@@ -529,7 +529,8 @@ class _EditOfferState extends State<EditOffer> {
                               specification,
                               requirements,
                               rqValues,
-                              technicalId)
+                              technicalId,
+                              TECHNICAL)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {
@@ -626,7 +627,8 @@ class _EditOfferState extends State<EditOffer> {
                               specification,
                               requirements,
                               rqValues,
-                              environmentalId)
+                              environmentalId,
+                              ENVIRONMENTAL)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {
@@ -714,7 +716,7 @@ class _EditOfferState extends State<EditOffer> {
                     builder: (context) {
                       return AlertDialog(
                           content: getRequirementsDialog(system, equipment,
-                              specification, requirements, rqValues, economicId)
+                              specification, requirements, rqValues, economicId, ECONOMIC)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {
@@ -803,7 +805,7 @@ class _EditOfferState extends State<EditOffer> {
                     builder: (context) {
                       return AlertDialog(
                           content: getRequirementsDialog(system, equipment,
-                              specification, requirements, rqValues, logisticId)
+                              specification, requirements, rqValues, logisticId, LOGISTIC)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {
@@ -831,13 +833,14 @@ class _EditOfferState extends State<EditOffer> {
       Specification specification,
       List<Requirement> requirements,
       List<RequirementValue> rqValues,
+      int favtoId,
       int factorType) {
     Iterable<Requirement> requirementsBySpecification = requirements.where(
         (requirement) =>
             requirement.specification == specification.id &&
             requirement.equipment == equipment.id &&
             requirement.system == system.id &&
-            requirement.factor == factorType);
+            requirement.factor == favtoId);
 
     return RequirementsDialog(widget._offer, system, equipment, specification,
         requirementsBySpecification, factorType, rqValues);
