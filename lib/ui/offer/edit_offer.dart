@@ -97,7 +97,7 @@ class _EditOfferState extends State<EditOffer> {
                   var equipments = await Equipment.listByProjectFactorAndSystem(
                       db, widget._offer.project, factor.id, system.id);
                   for (var equipment in equipments) {
-                    if(equipment.state != 1){
+                    if (equipment.state != 1) {
                       continue;
                     }
                     var equipmentFx = EquipmentFx(
@@ -345,13 +345,11 @@ class _EditOfferState extends State<EditOffer> {
                 TextField(
                   decoration: InputDecoration(labelText: "Año de construcción"),
                   controller: yearController,
-                  keyboardType: TextInputType.number,
                 ),
                 TextField(
                   decoration:
                       InputDecoration(labelText: "Fecha de disponibilidad"),
                   controller: dateController,
-                  keyboardType: TextInputType.number,
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: "Localización actual"),
@@ -361,25 +359,21 @@ class _EditOfferState extends State<EditOffer> {
                   decoration:
                       InputDecoration(labelText: "Último trabajo realizado"),
                   controller: lastWorkDateController,
-                  keyboardType: TextInputType.number,
                 ),
                 //Area de trabajo del taladro.
-
 
                 TextField(
                   decoration: InputDecoration(labelText: "Potencia total"),
                   controller: powerController,
-                  keyboardType: TextInputType.number,
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: "Máxima potencia"),
                   controller: maxLoadController,
-                  keyboardType: TextInputType.number,
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: "Máxima profundidad del pozo"),
+                  decoration:
+                      InputDecoration(labelText: "Máxima profundidad del pozo"),
                   controller: ratedCapacityController,
-                  keyboardType: TextInputType.number,
                 ),
 
                 Row(
@@ -397,15 +391,13 @@ class _EditOfferState extends State<EditOffer> {
                                 companyController.text.toString(),
                                 drillNameController.text.toString(),
                                 statusController.text.toString(),
-                                int.parse(dateController.text.toString()),
+                                dateController.text.toString(),
                                 locationController.text.toString(),
-                                int.parse(
-                                    lastWorkDateController.text.toString()),
-                                double.parse(powerController.text.toString()),
-                                int.parse(maxLoadController.text.toString()),
-                                int.parse(
-                                    ratedCapacityController.text.toString()),
-                                int.parse(yearController.text.toString()));
+                                lastWorkDateController.text.toString(),
+                                powerController.text.toString(),
+                                maxLoadController.text.toString(),
+                                ratedCapacityController.text.toString(),
+                                yearController.text.toString());
                           } else {
                             this.widget._offer.project = widget._currentProject;
                             this.widget._offer.company =
@@ -415,19 +407,19 @@ class _EditOfferState extends State<EditOffer> {
                             this.widget._offer.currentStatus =
                                 statusController.text.toString();
                             this.widget._offer.date =
-                                int.parse(dateController.text.toString());
+                                dateController.text.toString();
                             this.widget._offer.location =
                                 locationController.text.toString();
-                            this.widget._offer.dateLastWork = int.parse(
-                                lastWorkDateController.text.toString());
+                            this.widget._offer.dateLastWork =
+                                lastWorkDateController.text.toString();
                             this.widget._offer.power =
-                                double.parse(powerController.text.toString());
+                                powerController.text.toString();
                             this.widget._offer.maxLoad =
-                                int.parse(maxLoadController.text.toString());
-                            this.widget._offer.ratedCapacity = int.parse(
-                                ratedCapacityController.text.toString());
+                                maxLoadController.text.toString();
+                            this.widget._offer.ratedCapacity =
+                                ratedCapacityController.text.toString();
                             this.widget._offer.year =
-                                int.parse(yearController.text.toString());
+                                yearController.text.toString();
                           }
                           var db = await widget.dbHelper.database;
                           await Offer.save(db, this.widget._offer);
@@ -715,8 +707,14 @@ class _EditOfferState extends State<EditOffer> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                          content: getRequirementsDialog(system, equipment,
-                              specification, requirements, rqValues, economicId, ECONOMIC)
+                          content: getRequirementsDialog(
+                              system,
+                              equipment,
+                              specification,
+                              requirements,
+                              rqValues,
+                              economicId,
+                              ECONOMIC)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {
@@ -804,8 +802,14 @@ class _EditOfferState extends State<EditOffer> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                          content: getRequirementsDialog(system, equipment,
-                              specification, requirements, rqValues, logisticId, LOGISTIC)
+                          content: getRequirementsDialog(
+                              system,
+                              equipment,
+                              specification,
+                              requirements,
+                              rqValues,
+                              logisticId,
+                              LOGISTIC)
                           //Text("${equipmentName}"),
                           );
                     }).then((value) {

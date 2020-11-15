@@ -1,5 +1,6 @@
 import 'package:perforaya/model/entity_model.dart';
 import 'package:perforaya/model/equipment.dart';
+import 'package:perforaya/model/requirement.dart';
 import 'package:perforaya/utils/database_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -163,10 +164,33 @@ class Specification extends EntityModel {
     return specificationList;
   }
 
-  static Future<int> save(Database db, Specification equipment) {
+  static Future<int> save(Database db, Specification equipment) async{
     if (equipment.id <= 0) {
       equipment.id = null;
-      return db.insert(TABLE_NAME, Specification.toMap(equipment));
+      var newID = await  db.insert(TABLE_NAME, Specification.toMap(equipment));
+      var specifications = await Specification.listByProjectFactorSystemAndEquipment(
+          db,
+          equipment.project,
+          equipment.factor,
+          equipment.system,
+          equipment.equipment
+      );
+      if( specifications.isNotEmpty ){
+        var firstSpecification = specifications[0];
+        var requirements = await Requirement.listByProjectFactorSystemEquipmentAndSpecification(db,
+            equipment.project,
+            equipment.factor,
+            equipment.system,
+            equipment.equipment,
+            firstSpecification.id
+        );
+        requirements.forEach((rq) {
+          rq.specification = newID;
+          rq.id = null;
+          Requirement.save(db, rq);
+        });
+      }
+      return newID;
     } else {
       return db.update(TABLE_NAME, Specification.toMap(equipment),
           where: "$COLUMN_ID = ?", whereArgs: [equipment.id]);

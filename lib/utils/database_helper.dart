@@ -211,7 +211,7 @@ class DatabaseHelper {
     await db.execute(
         "INSERT INTO equipment(id, project, factor, system, name, weight, allowsp) VALUES(54, 1, 4, 3, 'Tubular PU/LD System o Catwalk', 1, 0);");
     await db.execute(
-        "INSERT INTO equipment(id, project, factor, system, name, weight, allowsp) VALUES(55, 1, 4, 3, 'Aerial Work plataform/Man Lift', 1, 0);");
+        "INSERT INTO equipment(id, project, factor, system, name, weight, allowsp) VALUES(55, 1, 4, 3, 'Aerial Work platform/Man Lift', 1, 0);");
     await db.execute(
         "INSERT INTO equipment(id, project, factor, system, name, weight, allowsp) VALUES(56, 1, 4, 3, 'Montacargas', 1, 0);");
     await db.execute(
@@ -577,6 +577,8 @@ class DatabaseHelper {
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(190, 1, 4, 3, 55, 55, 'Altura de la plataforma', '', 1.0, '');");
     await db.execute(
+        "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(305, 1, 4, 3, 55, 55, 'Certificado', '', 1.0, '');");
+    await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(264, 1, 4, 11, 87, 87, 'Ambulancia y enfermería con equipo esencial básico de acuerdo a la resolución 1043 de 2006', '', 1.0, '');");
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(266, 1, 4, 11, 89, 89, 'Aparatos de respiración ', '', 1.0, '');");
@@ -614,6 +616,8 @@ class DatabaseHelper {
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(114, 1, 4, 6, 28, 28, 'Cantidad ', '', 1.0, '');");
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(167, 1, 4, 5, 46, 46, 'Cantidad ', '', 1.0, '');");
+    await db.execute(
+        "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(304, 1, 4, 5, 46, 46, 'Conexión ', '', 1.0, '');");
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(179, 1, 4, 5, 48, 48, 'Cantidad ', '', 1.0, '');");
     await db.execute(
@@ -810,6 +814,9 @@ class DatabaseHelper {
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(14, 1, 4, 8, 2, 2, 'Intermediate racking board', '', 1.0, '');");
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(157, 1, 4, 5, 44, 44, 'Internal plastic coating', '', 1.0, 'Para cada tipo de Drillpipe');");
+    await db.execute(
+        "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(303, 1, 4, 5, 43, 43, 'Peso nominal', '', 1.0, '');");
+
     await db.execute(
         "INSERT INTO requirement(id, project, factor, system, equipment, specification, label, expected, weight, comment) VALUES(165, 1, 4, 5, 45, 45, 'Internal plastic coating', '', 1.0, '');");
     await db.execute(

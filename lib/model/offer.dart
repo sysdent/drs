@@ -23,13 +23,13 @@ class Offer extends EntityModel {
   String _company;
   String _drillName;
   String _currentStatus;
-  int _date;
+  String _date;
   String _location;
-  int _dateLastWork;
-  double _power;
-  int _maxLoad;
-  int _ratedCapacity;
-  int _year;
+  String _dateLastWork;
+  String _power;
+  String _maxLoad;
+  String _ratedCapacity;
+  String _year;
   double _score;
 
   Offer(
@@ -63,7 +63,7 @@ class Offer extends EntityModel {
     this._currentStatus = currentStatus;
   }
 
-  set date(int date) {
+  set date(String date) {
     this._date = _date;
   }
 
@@ -71,23 +71,23 @@ class Offer extends EntityModel {
     this._location = location;
   }
 
-  set dateLastWork(int dateLastWork) {
+  set dateLastWork(String dateLastWork) {
     this._dateLastWork = dateLastWork;
   }
 
-  set power(double power) {
+  set power(String power) {
     this._power = power;
   }
 
-  set maxLoad(int maxLoad) {
+  set maxLoad(String maxLoad) {
     this._maxLoad = maxLoad;
   }
 
-  set ratedCapacity(int ratedCapacity) {
+  set ratedCapacity(String ratedCapacity) {
     this._ratedCapacity = ratedCapacity;
   }
 
-  set year(int year) {
+  set year(String year) {
     this._year = year;
   }
 
@@ -99,13 +99,13 @@ class Offer extends EntityModel {
   String get company => this._company;
   String get drillName => this._drillName;
   String get currentStatus => this._currentStatus;
-  int get date => this._date;
+  String get date => this._date;
   String get location => this._location;
-  int get dateLastWork => this._dateLastWork;
-  double get power => this._power;
-  int get maxLoad => this._maxLoad;
-  int get ratedCapacity => this._ratedCapacity;
-  int get year => this._year;
+  String get dateLastWork => this._dateLastWork;
+  String get power => this._power;
+  String get maxLoad => this._maxLoad;
+  String get ratedCapacity => this._ratedCapacity;
+  String get year => this._year;
   double get score => this._score;
 
   static Offer fromMap(Map<String, dynamic> map) {
@@ -118,7 +118,7 @@ class Offer extends EntityModel {
         map[COLUMN_DATE],
         map[COLUMN_LOCATION],
         map[COLUMN_DATE_LAST_WORK],
-        map[COLUMN_POWER] + .0,
+        map[COLUMN_POWER],
         map[COLUMN_MAX_LOAD],
         map[COLUMN_RATED_CAPACITY],
         map[COLUMN_YEAR]);
@@ -203,10 +203,10 @@ class Offer extends EntityModel {
   }
 
   static getDDL(){
-    return 'CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_PROJECT INTEGER, $COLUMN_COMPANY TEXT, $COLUMN_DRILL_NAME TEXT, $COLUMN_CURRENT_STATUS TEXT, $COLUMN_DATE INTEGER, $COLUMN_LOCATION TEXT, $COLUMN_DATE_LAST_WORK INTEGER, $COLUMN_POWER INTEGER, $COLUMN_MAX_LOAD INTEGER, $COLUMN_RATED_CAPACITY INTEGER, $COLUMN_YEAR INTEGER, $COLUMN_SCORE INTEGER)';
+    return 'CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_PROJECT INTEGER, $COLUMN_COMPANY TEXT, $COLUMN_DRILL_NAME TEXT, $COLUMN_CURRENT_STATUS TEXT, $COLUMN_DATE TEXT, $COLUMN_LOCATION TEXT, $COLUMN_DATE_LAST_WORK TEXT, $COLUMN_POWER TEXT, $COLUMN_MAX_LOAD TEXT, $COLUMN_RATED_CAPACITY TEXT, $COLUMN_YEAR TEXT, $COLUMN_SCORE INTEGER)';
   }
 
   static getInsert(Offer offer){
-    return "INSERT INTO $TABLE_NAME($COLUMN_ID, $COLUMN_PROJECT, $COLUMN_COMPANY, $COLUMN_DRILL_NAME, $COLUMN_CURRENT_STATUS, $COLUMN_DATE, $COLUMN_LOCATION, $COLUMN_DATE_LAST_WORK, $COLUMN_POWER, $COLUMN_MAX_LOAD, $COLUMN_RATED_CAPACITY, $COLUMN_YEAR, $COLUMN_SCORE) VALUES(${offer.id}, ${offer.project}, '${offer.company}', '${offer.drillName}', ${offer.currentStatus}, ${offer.date}, '${offer.location}',${offer.dateLastWork},${offer.power},${offer.maxLoad},${offer.ratedCapacity},${offer.year}, ${offer.score});";
+    return "INSERT INTO $TABLE_NAME($COLUMN_ID, $COLUMN_PROJECT, $COLUMN_COMPANY, $COLUMN_DRILL_NAME, $COLUMN_CURRENT_STATUS, $COLUMN_DATE, $COLUMN_LOCATION, $COLUMN_DATE_LAST_WORK, $COLUMN_POWER, $COLUMN_MAX_LOAD, $COLUMN_RATED_CAPACITY, $COLUMN_YEAR, $COLUMN_SCORE) VALUES(${offer.id}, ${offer.project}, '${offer.company}', '${offer.drillName}', '${offer.currentStatus}', '${offer.date}', '${offer.location}', '${offer.dateLastWork}', '${offer.power}', '${offer.maxLoad}', '${offer.ratedCapacity}', '${offer.year}', ${offer.score});";
   }
 }

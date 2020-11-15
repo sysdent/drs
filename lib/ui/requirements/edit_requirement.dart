@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:perforaya/contants.dart';
 import 'package:perforaya/model/especification.dart';
 import 'package:perforaya/model/requirement.dart';
+import 'package:perforaya/utils/alert.dart';
 import 'package:perforaya/utils/database_helper.dart';
 
 class EditRequirement extends StatefulWidget {
@@ -27,6 +28,22 @@ class _EditRequirementState extends State<EditRequirement> {
     TextEditingController weightController = TextEditingController();
     weightController..text = this.widget._requirement?.weight?.toString();
 
+    var actions = <Widget>[];
+    if (widget._requirement != null) {
+      actions.add(
+        IconButton(
+          icon: Icon(Icons.delete),
+          onPressed: () async {
+            confirm(context, "Eliminar", "Seguro desea eliminar este requerimiento?", () async {
+              var db = await widget.dbHelper.database;
+              Requirement.delete(db, widget._requirement);
+              Navigator.pop(context, true);
+            });
+          },
+        ),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Column(
@@ -41,6 +58,7 @@ class _EditRequirementState extends State<EditRequirement> {
               ),
             ],
           ),
+          actions: actions,
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -86,7 +104,6 @@ class _EditRequirementState extends State<EditRequirement> {
                                     this.widget._specification.system,
                                     this.widget._specification.equipment,
                                     this.widget._specification.id,
-
                                     nameController.text.toString(),
                                     expectedController.text.toString(),
                                     double.parse(

@@ -19,8 +19,8 @@ class OfferList extends SearcherTemplate<Offer> {
   Future<List<Offer>> getList(Database db, String nameFilter) async {
     var list = await Offer.list(db, null);
     if (list.length > 0)
-      list.add(Offer(-1, 0, "Factor económico", "Factor económico", "", 0, "",
-          0, 0, 0, 0, 0));
+      list.add(Offer(-1, 0, "Factor económico", "Factor económico", "", "", "",
+          "", "", "", "", ""));
     return Future.delayed(Duration(seconds: 0), () => list);
   }
 
@@ -79,6 +79,7 @@ class OfferList extends SearcherTemplate<Offer> {
               rqs.where((element) => element.id == e.requirement).toList()[0];
           var rqfx = RequirementFx(e.id, rq.label, e.value + .0, e.comment);
           rqfx.setValue(e.value + .0);
+
           return rqfx;
         }).toList());
         //if (offersFx.length > 0) {
